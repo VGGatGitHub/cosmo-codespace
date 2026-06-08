@@ -1,0 +1,131 @@
+ -log(Like) =    603.105563798797
+  chi-sq    =    1206.21112759759
+
+    1  0.2235226E-01   omegabh2              \Omega_b h^2
+    2  0.1181851E+00   omegach2              \Omega_c h^2
+    3  0.1041135E+01   theta                 100\theta_{MC}
+    4  0.5687253E-01   tau                   \tau
+   17  0.3045953E+01   logA                  {\rm{ln}}(10^{10} A_s)
+   18  0.9697951E+00   ns                    n_s
+   25  0.1000845E+01   calPlanck             y_{\rm cal}
+   26  0.4654613E+02   acib217               A^{CIB}_{217}
+   28  0.6060045E+00   xi                    \xi^{tSZ-CIB}
+   29  0.6915962E+01   asz143                A^{tSZ}_{143}
+   30  0.2504226E+03   aps100                A^{PS}_{100}
+   31  0.5171916E+02   aps143                A^{PS}_{143}
+   32  0.5287069E+02   aps143217             A^{PS}_{143\times 217}
+   33  0.1217360E+03   aps217                A^{PS}_{217}
+   34  0.3440343E-01   aksz                  A^{kSZ}
+   35  0.8874009E+01   kgal100               A^{{\rm dust}TT}_{100}
+   36  0.1080792E+02   kgal143               A^{{\rm dust}TT}_{143}
+   37  0.1992209E+02   kgal143217            A^{{\rm dust}TT}_{143\times 217}
+   38  0.9561023E+02   kgal217               A^{{\rm dust}TT}_{217}
+   43  0.9996884E+00   cal0                  c_{100}
+   44  0.9982399E+00   cal2                  c_{217}
+
+    5  0.0000000E+00   omegak                \Omega_K
+    6  0.6000000E-01   mnu                   \Sigma m_\nu
+    7  0.0000000E+00   meffsterile           m_{\nu,{\rm{sterile}}}^{\rm{eff}}
+    8 -0.1000000E+01   w                     w
+    9  0.0000000E+00   wa                    w_a
+   10  0.3046000E+01   nnu                   N_{eff}
+   11  0.2400000E+00   yhe                   Y_{He}
+   12  0.0000000E+00   alpha1                \alpha_{-1}
+   13  0.5000000E+00   deltazrei             {\Delta}z_{\rm re}
+   14  0.1000000E+01   Alens                 A_{L}
+   15 -0.1000000E+01   Alensf                A^f_L
+   16  0.0000000E+00   fdm                   \epsilon_0 f_d
+   19  0.0000000E+00   nrun                  n_{\rm run}
+   20  0.0000000E+00   nrunrun               n_{\rm run, run}
+   21  0.0000000E+00   r                     r
+   22  0.0000000E+00   nt                    n_t
+   23  0.0000000E+00   ntrun                 n_{t,{\rm run}}
+   24  0.1000000E+01   Aphiphi               A^{\phi\phi}_L
+   27 -0.1300000E+01   ncib                  n^{CIB}
+   39  0.1000000E+01   Asbpx100TT            A^{{\rm sbpx}TT}_{100}
+   40  0.1000000E+01   Asbpx143TT            A^{{\rm sbpx}TT}_{143}
+   41  0.1000000E+01   Asbpx143217TT         A^{{\rm sbpx}TT}_{143\times 217}
+   42  0.1000000E+01   Asbpx217TT            A^{{\rm sbpx}TT}_{217}
+
+   45  0.6805359E+02   H0                    H_0
+   46  0.6951551E+00   omegal                \Omega_\Lambda
+   47  0.3048449E+00   omegam                \Omega_m
+   48  0.1411825E+00   omegamh2              \Omega_m h^2
+   49  0.6451439E-03   omeganuh2             \Omega_\nu h^2
+   50  0.9607979E-01   omegamh3              \Omega_m h^3
+   51  0.8074879E+00   sigma8                \sigma_8
+   52  0.8139821E+00   S8                    S_8
+   53  0.4458363E+00   s8omegamp5            \sigma_8 \Omega_m^{0.5}
+   54  0.6000062E+00   s8omegamp25           \sigma_8 \Omega_m^{0.25}
+   55  0.9788372E+00   s8h5                  \sigma_8/h^{0.5}
+   56  0.1004414E+03   rdragh                r_{\rm drag} h
+   57  0.2419600E+01   rmsdeflect            \langle d^2\rangle^{1/2}
+   58  0.7914734E+01   zrei                  z_{\rm re}
+   59  0.2103007E+01   A                     10^9 A_s
+   60  0.1876903E+01   clamp                 10^9 A_s e^{-2\tau}
+   61  0.1220992E+04   DL40                  D_{40}
+   62  0.5731825E+04   DL220                 D_{220}
+   63  0.2540194E+04   DL810                 D_{810}
+   64  0.8185227E+03   DL1420                D_{1420}
+   65  0.2311851E+03   DL2000                D_{2000}
+   66  0.9697951E+00   ns02                  n_{s,0.002}
+   67  0.2453884E+00   yheused               Y_P
+   68  0.2467149E+00   YpBBN                 Y_P^{\rm{BBN}}
+   69  0.2588820E+01   DHBBN                 10^5D/H
+   70  0.1378496E+02   age                   {\rm{Age}}/{\rm{Gyr}}
+   71  0.1089785E+04   zstar                 z_*
+   72  0.1449154E+03   rstar                 r_*
+   73  0.1041326E+01   thetastar             100\theta_*
+   74  0.1391642E+02   DAstar                D_{\rm{M}}(z_*)/{\rm{Gpc}}
+   75  0.1059780E+04   zdrag                 z_{\rm{drag}}
+   76  0.1475916E+03   rdrag                 r_{\rm{drag}}
+   77  0.1403256E+00   kd                    k_{\rm D}
+   78  0.1608738E+00   thetad                100\theta_{\rm{D}}
+   79  0.3358399E+04   zeq                   z_{\rm{eq}}
+   80  0.1025022E-01   keq                   k_{\rm{eq}}
+   81  0.8213273E+00   thetaeq               100\theta_{\rm{eq}}
+   82  0.4535915E+00   thetarseq             100\theta_{\rm{s,eq}}
+   83  0.7326191E+02   Hubble015             H(0.15)
+   84  0.6375119E+03   DM015                 D_{\rm{M}}(0.15)
+   85  0.8325357E+02   Hubble038             H(0.38)
+   86  0.1522024E+04   DM038                 D_{\rm{M}}(0.38)
+   87  0.8990101E+02   Hubble051             H(0.51)
+   88  0.1972696E+04   DM051                 D_{\rm{M}}(0.51)
+   89  0.9546644E+02   Hubble061             H(0.61)
+   90  0.2296361E+04   DM061                 D_{\rm{M}}(0.61)
+   91  0.2353660E+03   Hubble233             H(2.33)
+   92  0.5757253E+04   DM233                 D_{\rm{M}}(2.33)
+   93  0.4509421E+00   fsigma8z015           f\sigma_8(0.15)
+   94  0.7468268E+00   sigma8z015            \sigma_8(0.15)
+   95  0.4707047E+00   fsigma8z038           f\sigma_8(0.38)
+   96  0.6627338E+00   sigma8z038            \sigma_8(0.38)
+   97  0.4700922E+00   fsigma8z051           f\sigma_8(0.51)
+   98  0.6205116E+00   sigma8z051            \sigma_8(0.51)
+   99  0.4656717E+00   fsigma8z061           f\sigma_8(0.61)
+  100  0.5906178E+00   sigma8z061            \sigma_8(0.61)
+  101  0.2980628E+00   fsigma8z233           f\sigma_8(2.33)
+  102  0.3075853E+00   sigma8z233            \sigma_8(2.33)
+  103   2.927647E+01   f2000_143             f_{2000}^{143}
+  104   3.245693E+01   f2000_x               f_{2000}^{143\times217}
+  105   1.069226E+02   f2000_217             f_{2000}^{217}
+  106  0.9062672E+01   chi2_lensing          \chi^2_{\rm lensing}
+  107  0.3964624E+03   chi2_simall           \chi^2_{\rm simall}
+  108  0.2253480E+02   chi2_lowl             \chi^2_{\rm lowl}
+  109  0.7611514E+03   chi2_plik             \chi^2_{\rm plik}
+  110  0.1056803E+02   chi2_H073p45          \chi^2_{\rm H073p45}
+  111  0.7475684E-04   chi2_6DF              \chi^2_{\rm 6DF}
+  112  0.1677296E+01   chi2_MGS              \chi^2_{\rm MGS}
+  113  0.3495339E+01   chi2_DR12BAO          \chi^2_{\rm DR12BAO}
+  114  0.1259158E+01   chi2_prior            \chi^2_{\rm prior}
+  115  0.1189211E+04   chi2_CMB              \chi^2_{\rm CMB}
+  116  0.5172710E+01   chi2_BAO              \chi^2_{\rm BAO}
+
+ -log(Like)     chi-sq   data
+      4.531      9.063   CMB: lensing = smicadx12_Dec5_ftl_mv2_ndclpp_p_teb_consext8
+    198.231    396.462   CMB: simall = simall_100x143_offlike5_EE_Aplanck_B
+     11.267     22.535   CMB: lowl = commander_dx12_v3_2_29
+    380.576    761.151   CMB: plik = plik_rd12_HM_v22_TT
+      5.284     10.568   Hubble: H073p45
+      0.000      0.000   BAO: 6DF
+      0.839      1.677   BAO: MGS
+      1.748      3.495   BAO: DR12BAO
