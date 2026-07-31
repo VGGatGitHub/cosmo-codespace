@@ -1,3 +1,5 @@
+#VGG: these plots are no good and need fixing!
+
 import os
 import numpy as np
 import matplotlib.pyplot as plt

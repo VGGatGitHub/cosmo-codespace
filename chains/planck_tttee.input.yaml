@@ -67,8 +67,10 @@ params:
     latex: n_s
 sampler:
   mcmc:
-    max_samples: 10000
+    max_samples: 20000
     Rminus1_stop: 0.01
     Rminus1_cl_stop: 0.02
-    covmat: ./cobaya_packages/data/planck_2018/baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+    learn_proposal: true
+    learn_proposal_Rminus1_min: 0.2
+    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
 output: planck_tttee

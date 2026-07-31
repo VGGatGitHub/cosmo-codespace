@@ -145,6 +145,7 @@ def main():
     if hasattr(samples, "loglikes") and len(samples.loglikes) == samples.numrows:
         best_idx = int(np.argmax(samples.loglikes))
     else:
+        print("\n~~~~>Warning: problem with samples.loglikes! Setting best_idx = 0!")
         best_idx = 0
     best_sample = samples.samples[best_idx]
 

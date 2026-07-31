@@ -1,3 +1,29 @@
+#output: chains/planck_tttee #this is for one process only comment the next lines if using this
+output: mpi_chains/planck_tttee #see below how to do mpi run
+"n_MPI_nodes": 2,   # Number of MPI processes
+    #'no_mpi' : True,
+  
+
+## in bash do:
+# export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
+# cobaya-install --test planck_2018_highl_plik.TTTEEE
+## or in python 
+# !cobaya-install --test planck_2018_highl_plik.TTTEEE  -p {cobaya_packages_path}
+
+## run with one of the follwing: 
+# python -m cobaya.run -r planck_tttee.yaml
+# mpirun --oversubscribe -np 2 cobaya-run planck_tttee.yaml
+
+sampler:
+  mcmc:
+    max_samples: 20 #20000
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.02
+    learn_proposal: true
+    learn_proposal_Rminus1_min: 0.2
+    #covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat #VGG needs to fix the covmat location   
+    covmat: auto
+
 theory:
   classy:
     extra_args:
@@ -51,7 +77,6 @@ params:
       loc: 3.05
       scale: 0.1
     latex: \ln(10^{10} A_s)
-    #derived: false
   n_s:
     prior:
       min: 0.9
@@ -68,18 +93,3 @@ likelihood:
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
-
-sampler:
-  mcmc:
-    max_samples: 20000 #20000
-    Rminus1_stop: 0.01
-    Rminus1_cl_stop: 0.02
-    learn_proposal: true
-    learn_proposal_Rminus1_min: 0.2
-    #covmat: baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
-
-output: my_chains/planck_tttee
-# in bash do:
-# export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
-# run with: 
-# python -m cobaya.run -r planck_tttee.yaml

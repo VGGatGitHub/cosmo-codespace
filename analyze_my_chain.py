@@ -58,7 +58,7 @@ for name in cosmo_params_present:
 # ---------------------------------------------------------
 # 4. Best-fit values
 # ---------------------------------------------------------
-best_idx = int(chains.data["minuslogpost"].idxmin())
+best_idx = int(chains.data["minuslogpost"].idxmax()) #VGG:it was idxmin but it should be idxmax
 best_sample = chains.data.iloc[best_idx]
 
 print("\n=== Best-fit Cosmological Parameters ===")

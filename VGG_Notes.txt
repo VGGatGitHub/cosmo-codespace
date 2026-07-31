@@ -1,5 +1,14 @@
 #VGG: here are my notes on managing the codespace and the GitHub repo
+
 # the workflow at the end in order to push and sync with the repo: 
 git add .
 git commit -m "Sync work before deleting Codespace"
 git push
+
+# to test MPI run
+mpirun -np 2 python test.py
+
+#if you get error try this
+mpirun --oversubscribe -np 2 python test.py
+
+## to make Cobay run either look at planck_ttteee.yaml 

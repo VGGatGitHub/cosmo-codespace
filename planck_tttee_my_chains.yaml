@@ -1,3 +1,9 @@
+output: my_chains/planck_tttee
+# in bash do:
+# export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
+# run with: 
+# python -m cobaya.run -r planck_tttee.yaml
+
 theory:
   classy:
     extra_args:
@@ -51,6 +57,7 @@ params:
       loc: 3.05
       scale: 0.1
     latex: \ln(10^{10} A_s)
+    #derived: false
   n_s:
     prior:
       min: 0.9
@@ -63,8 +70,7 @@ params:
 
 likelihood:
   planck_2018_highl_plik.TTTEEE:
-    import_params: [clik]
-    #clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
+    clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
@@ -76,10 +82,4 @@ sampler:
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
-    #covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
-
-output: my_chains/planck_tttee
-# in bash do:
-# export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
-# run with: 
-# python -m cobaya.run -r planck_tttee.yaml
+    #covmat: baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
