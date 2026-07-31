@@ -6,16 +6,17 @@ output: mpi_chains/planck_tttee #see below how to do mpi run
 
 ## in bash do:
 # export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
+# ./install_planck.sh
 # cobaya-install --test planck_2018_highl_plik.TTTEEE
+
 ## or in python 
 # !cobaya-install --test planck_2018_highl_plik.TTTEEE  -p {cobaya_packages_path}
 ## may need to run 
 # cobaya-install planck_2018_highl_plik.TTTEEE -p $COBAYA_PACKAGES_PATH
 
-
 ## run with one of the follwing: 
 # python -m cobaya.run -r planck_tttee.yaml
-# mpirun --oversubscribe -np 2 cobaya-run planck_tttee.yaml
+# mpirun --oversubscribe -np 2 cobaya-run -r planck_tttee.yaml
 
 sampler:
   mcmc:

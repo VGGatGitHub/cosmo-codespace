@@ -34,6 +34,14 @@ theory:
       yhe: YHe
       yheused: YHe
     version: v3.3.4
+    input_params:
+    - H0
+    - omega_b
+    - omega_cdm
+    - tau_reio
+    - ln_A_s_1e10
+    - n_s
+    output_params: []
 likelihood:
   planck_2018_highl_plik.TTTEEE:
     path: null
@@ -48,6 +56,55 @@ likelihood:
     type: CMB
     stop_at_error: false
     version: null
+    input_params:
+    - A_planck
+    - calib_100T
+    - calib_217T
+    - A_pol
+    - calib_100P
+    - calib_143P
+    - calib_217P
+    - cib_index
+    - A_cib_217
+    - xi_sz_cib
+    - A_sz
+    - ksz_norm
+    - gal545_A_100
+    - gal545_A_143
+    - gal545_A_143_217
+    - gal545_A_217
+    - A_sbpx_100_100_TT
+    - A_sbpx_143_143_TT
+    - A_sbpx_143_217_TT
+    - A_sbpx_217_217_TT
+    - ps_A_100_100
+    - ps_A_143_143
+    - ps_A_143_217
+    - ps_A_217_217
+    - galf_TE_index
+    - galf_TE_A_100
+    - galf_TE_A_100_143
+    - galf_TE_A_100_217
+    - galf_TE_A_143
+    - galf_TE_A_143_217
+    - galf_TE_A_217
+    - galf_EE_index
+    - galf_EE_A_100
+    - galf_EE_A_100_143
+    - galf_EE_A_100_217
+    - galf_EE_A_143
+    - galf_EE_A_143_217
+    - galf_EE_A_217
+    - A_cnoise_e2e_100_100_EE
+    - A_cnoise_e2e_143_143_EE
+    - A_cnoise_e2e_217_217_EE
+    - A_sbpx_100_100_EE
+    - A_sbpx_100_143_EE
+    - A_sbpx_100_217_EE
+    - A_sbpx_143_143_EE
+    - A_sbpx_143_217_EE
+    - A_sbpx_217_217_EE
+    output_params: []
   planck_2018_lowl.TT:
     lmin: 2
     lmax: 29
@@ -57,6 +114,9 @@ likelihood:
     speed: -1
     stop_at_error: false
     version: null
+    input_params:
+    - A_planck
+    output_params: []
   planck_2018_lowl.EE:
     type: CMB
     aliases:
@@ -64,6 +124,9 @@ likelihood:
     speed: -1
     stop_at_error: false
     version: null
+    input_params:
+    - A_planck
+    output_params: []
   planck_2018_lensing.clik:
     path: null
     clik_file: baseline/plc_3.0/lensing/smicadx12_Dec5_ftl_mv2_ndclpp_p_teb_consext8.clik_lensing
@@ -75,6 +138,9 @@ likelihood:
     type: CMB
     stop_at_error: false
     version: null
+    input_params:
+    - A_planck
+    output_params: []
 prior:
   SZ: 'lambda ksz_norm, A_sz: stats.norm.logpdf(ksz_norm+1.6*A_sz, loc=9.5, scale=3.0)'
 params:
@@ -522,7 +588,7 @@ sampler:
     oversample: null
     drag_limits: null
     fallback_covmat_scale: 4
-    version: null
+    version: 3.6.2
 output: planck_tttee
 n_MPI_nodes: 2,
 version: 3.6.2

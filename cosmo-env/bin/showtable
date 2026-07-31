@@ -1,4 +1,4 @@
-#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3.11
 import sys
 from astropy.table.scripts.showtable import main_deprecated
 if __name__ == '__main__':

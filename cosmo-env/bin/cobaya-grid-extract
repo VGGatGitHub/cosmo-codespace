@@ -1,4 +1,4 @@
-#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3.11
 import sys
 from cobaya.grid_tools.gridmanage import grid_extract
 if __name__ == '__main__':

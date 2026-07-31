@@ -1,4 +1,4 @@
-#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3.11
 import sys
 from astropy.samp.hub_script import hub_script
 if __name__ == '__main__':

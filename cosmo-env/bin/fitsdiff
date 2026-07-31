@@ -1,4 +1,4 @@
-#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3.11
 import sys
 from astropy.io.fits.scripts.fitsdiff import main
 if __name__ == '__main__':
