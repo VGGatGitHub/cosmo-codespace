@@ -1,0 +1,6 @@
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+import sys
+from cobaya.cosmo_input import gui_script
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(gui_script())

@@ -1,0 +1,6 @@
+#!/workspaces/cosmo-codespace/cosmo-env/bin/python3
+import sys
+from cobaya.grid_tools.gridmanage import grid_copy
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(grid_copy())

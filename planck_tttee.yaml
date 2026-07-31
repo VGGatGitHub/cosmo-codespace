@@ -9,6 +9,9 @@ output: mpi_chains/planck_tttee #see below how to do mpi run
 # cobaya-install --test planck_2018_highl_plik.TTTEEE
 ## or in python 
 # !cobaya-install --test planck_2018_highl_plik.TTTEEE  -p {cobaya_packages_path}
+## may need to run 
+# cobaya-install planck_2018_highl_plik.TTTEEE -p $COBAYA_PACKAGES_PATH
+
 
 ## run with one of the follwing: 
 # python -m cobaya.run -r planck_tttee.yaml

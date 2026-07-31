@@ -1,5 +1,10 @@
 #VGG: here are my notes on managing the codespace and the GitHub repo
 
+#run and then activate it, may need chmod +x install_cosmo_env.sh
+
+./install_cosmo_env.sh
+source cosmo-env/bin/activate.csh #for tcsh nd no .csh for bash shell
+
 # the workflow at the end in order to push and sync with the repo: 
 git add .
 git commit -m "Sync work before deleting Codespace"
