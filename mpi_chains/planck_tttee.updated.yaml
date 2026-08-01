@@ -531,7 +531,7 @@ sampler:
     supports_periodic_params: true
     burn_in: 0
     max_tries: 40d
-    covmat: auto
+    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     covmat_params: null
     proposal_scale: 2.4
     output_every: 60s

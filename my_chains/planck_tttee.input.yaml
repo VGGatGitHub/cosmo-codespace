@@ -1,19 +1,15 @@
-output: planck_tttee
-
 theory:
   classy:
     extra_args:
       output: tCl,pCl,lCl
       l_max_scalars: 2500
       lensing: true
-
 likelihood:
   planck_2018_highl_plik.TTTEEE:
     clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
-
 params:
   H0:
     prior:
@@ -69,11 +65,13 @@ params:
       loc: 0.965
       scale: 0.02
     latex: n_s
-
 sampler:
   mcmc:
-    max_samples: 20000
+    max_samples: 20
     Rminus1_stop: 0.01
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
+    covmat: baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+output: planck_tttee
+n_MPI_nodes: 2,

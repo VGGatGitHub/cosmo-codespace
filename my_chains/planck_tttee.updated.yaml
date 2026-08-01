@@ -531,7 +531,7 @@ sampler:
     supports_periodic_params: true
     burn_in: 0
     max_tries: 40d
-    covmat: null
+    covmat: baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     covmat_params: null
     proposal_scale: 2.4
     output_every: 60s
@@ -541,7 +541,7 @@ sampler:
     learn_proposal_Rminus1_max: 2.0
     learn_proposal_Rminus1_max_early: 30.0
     learn_proposal_Rminus1_min: 0.2
-    max_samples: 20000
+    max_samples: 20
     Rminus1_stop: 0.01
     Rminus1_cl_stop: 0.02
     Rminus1_cl_level: 0.95
@@ -550,37 +550,7 @@ sampler:
     oversample_power: 0.4
     oversample_thin: true
     drag: false
-    blocking:
-    - - 1
-      - - H0
-        - omega_b
-        - omega_cdm
-        - tau_reio
-        - ln_A_s_1e10
-        - n_s
-    - - 7
-      - - A_planck
-    - - 7
-      - - calib_100T
-        - calib_217T
-        - A_cib_217
-        - xi_sz_cib
-        - A_sz
-        - ksz_norm
-        - gal545_A_100
-        - gal545_A_143
-        - gal545_A_143_217
-        - gal545_A_217
-        - ps_A_100_100
-        - ps_A_143_143
-        - ps_A_143_217
-        - ps_A_217_217
-        - galf_TE_A_100
-        - galf_TE_A_100_143
-        - galf_TE_A_100_217
-        - galf_TE_A_143
-        - galf_TE_A_143_217
-        - galf_TE_A_217
+    blocking: null
     callback_function: null
     callback_every: null
     seed: null
@@ -588,6 +558,7 @@ sampler:
     oversample: null
     drag_limits: null
     fallback_covmat_scale: 4
-    version: 3.6.2
+    version: null
 output: planck_tttee
+n_MPI_nodes: 2,
 version: 3.6.2

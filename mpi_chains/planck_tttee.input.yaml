@@ -72,6 +72,6 @@ sampler:
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
-    covmat: auto
+    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
 output: planck_tttee
 n_MPI_nodes: 2,
