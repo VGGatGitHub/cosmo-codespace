@@ -2,11 +2,10 @@ theory:
   classy:
     extra_args:
       output: tCl,pCl,lCl
-      l_max_scalars: 2500
+      l_max_scalars: 3500
       lensing: true
 likelihood:
-  planck_2018_highl_plik.TTTEEE:
-    clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
+  planck_2018_highl_plik.TTTEEE: null
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
@@ -28,7 +27,7 @@ params:
       dist: norm
       loc: 0.022
       scale: 0.0005
-    latex: \Omega_b
+    latex: \omega_b
   omega_cdm:
     prior:
       min: 0.05
@@ -37,7 +36,7 @@ params:
       dist: norm
       loc: 0.12
       scale: 0.01
-    latex: \Omega_c
+    latex: \omega_c
   tau_reio:
     prior:
       min: 0.01
@@ -72,6 +71,5 @@ sampler:
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
-    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+    covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
 output: planck_tttee
-n_MPI_nodes: 2,

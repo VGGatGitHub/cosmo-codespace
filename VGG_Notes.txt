@@ -1,7 +1,7 @@
 #VGG: here are my notes on managing the codespace and the GitHub repo
 
 #if you don't see (cosmo-env) then fix it!
-#run and then activate it, may need chmod +x install_cosmo_env.sh
+#run installer script and then activate it, may need chmod +x install_cosmo_env.sh
 ./install_cosmo_env.sh
 source cosmo-env/bin/activate.csh #for tcsh but no .csh for bash shell
 
@@ -9,7 +9,7 @@ source cosmo-env/bin/activate.csh #for tcsh but no .csh for bash shell
 mpirun -np 2 python test.py
 
 #if you get error try this
-mpirun --oversubscribe -np 2 python test.py
+mpirun --oversubscribe -np 4 python test.py
 
 #to test external package planck_2018_highl_plik.TTTEEE run
 cobaya-install --test planck_2018_highl_plik.TTTEEE
@@ -20,7 +20,10 @@ export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/ba
 cobaya-install --test planck_2018_highl_plik.TTTEEE
 
 ## to make Cobay run then look at planck_ttteee.yaml or try:
-mpirun --oversubscribe -np 2 cobaya-run -r planck_tttee.yaml
+mpirun --oversubscribe -np 4 cobaya-run -r planck_tttee.yaml
+
+## productioin run to reproduce planck 2018 studies
+mpirun -np 4 cobaya-run -r planck_tttee.yaml
 
 # the workflow at the end in order to push and sync with the repo: 
 git add .

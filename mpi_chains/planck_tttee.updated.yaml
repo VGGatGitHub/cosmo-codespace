@@ -5,7 +5,7 @@ theory:
     stop_at_error: false
     extra_args:
       output: tCl,pCl,lCl
-      l_max_scalars: 2500
+      l_max_scalars: 3500
       lensing: true
     ignore_obsolete: false
     renames:
@@ -161,7 +161,7 @@ params:
       dist: norm
       loc: 0.022
       scale: 0.0005
-    latex: \Omega_b
+    latex: \omega_b
     renames:
     - omegabh2
   omega_cdm:
@@ -172,7 +172,7 @@ params:
       dist: norm
       loc: 0.12
       scale: 0.01
-    latex: \Omega_c
+    latex: \omega_c
     renames:
     - omegach2
   tau_reio:
@@ -531,7 +531,7 @@ sampler:
     supports_periodic_params: true
     burn_in: 0
     max_tries: 40d
-    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+    covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     covmat_params: null
     proposal_scale: 2.4
     output_every: 60s
@@ -558,9 +558,9 @@ sampler:
         - tau_reio
         - ln_A_s_1e10
         - n_s
-    - - 7
+    - - 6
       - - A_planck
-    - - 7
+    - - 6
       - - calib_100T
         - calib_217T
         - A_cib_217
@@ -590,5 +590,4 @@ sampler:
     fallback_covmat_scale: 4
     version: 3.6.2
 output: planck_tttee
-n_MPI_nodes: 2,
 version: 3.6.2

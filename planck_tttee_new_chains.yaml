@@ -1,7 +1,12 @@
 output: new_chains/plikHM_TTTEEE_repro
 
 theory:
-  classy: {}
+  classy:
+    extra_args:
+      output: "tCl,pCl,lCl"
+      lensing: yes
+      l_max_scalars: 3500
+      accurate_lensing: yes
 
 likelihood:
   planck_2018_highl_plik.TTTEEE: null
@@ -9,11 +14,40 @@ likelihood:
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
 
-params:
-  ini:
-    value: "planck2018_chains/base/plikHM_TTTEEE/base_plikHM_TTTEEE.inputparams"
+
 sampler:
   mcmc:
     covmat: ./cobaya_packages/data/planck_2018/baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     Rminus1_stop: 0.01
     Rminus1_cl_stop: 0.02
+
+params:
+  omega_b:
+    prior: {min: 0.005, max: 0.1}
+    ref: 0.02237
+    proposal: 0.0001
+
+  omega_cdm:
+    prior: {min: 0.001, max: 0.99}
+    ref: 0.1200
+    proposal: 0.001
+
+  H0:
+    prior: {min: 20, max: 100}
+    ref: 67.36
+    proposal: 0.5
+
+  n_s:
+    prior: {min: 0.8, max: 1.2}
+    ref: 0.9649
+    proposal: 0.004
+
+  tau_reio:
+    prior: {min: 0.01, max: 0.8}
+    ref: 0.0544
+    proposal: 0.01
+
+  logA:
+    prior: {min: 1.6, max: 3.9}
+    ref: 3.044
+    proposal: 0.001

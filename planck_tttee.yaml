@@ -1,10 +1,11 @@
 #output: chains/planck_tttee #this is for one process only comment the next lines if using this
 output: mpi_chains/planck_tttee #see below how to do mpi run
-"n_MPI_nodes": 2,   # Number of MPI processes
+#"n_MPI_nodes": 4,   # Number of MPI processes
     #'no_mpi' : True,
-  
 
-## in bash do:
+#if sucesfull you may need to change 20 to 20000 for below 'max_samples: 20000'
+
+## if problems theh in bash do:
 # export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
 # ./install_planck.sh
 # cobaya-install --test planck_2018_highl_plik.TTTEEE
@@ -16,7 +17,7 @@ output: mpi_chains/planck_tttee #see below how to do mpi run
 
 ## run with one of the follwing: 
 # python -m cobaya.run -r planck_tttee.yaml
-# mpirun --oversubscribe -np 2 cobaya-run -r planck_tttee.yaml
+# mpirun --oversubscribe -np 4 cobaya-run -r planck_tttee.yaml
 
 sampler:
   mcmc:
@@ -25,14 +26,14 @@ sampler:
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
-    covmat: base_plikHM_TTTEEE_lowl_lowE_lensing.covmat #VGG needs to fix the covmat location   
+    covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     #covmat: auto
 
 theory:
   classy:
     extra_args:
       output: tCl,pCl,lCl
-      l_max_scalars: 2500
+      l_max_scalars: 3500
       lensing: yes
 
 params:
@@ -53,7 +54,7 @@ params:
       dist: norm
       loc: 0.022
       scale: 0.0005
-    latex: \Omega_b
+    latex: \omega_b
   omega_cdm:
     prior:
       min: 0.05
@@ -62,7 +63,7 @@ params:
       dist: norm
       loc: 0.12
       scale: 0.01
-    latex: \Omega_c
+    latex: \omega_c
   tau_reio:
     prior:
       min: 0.01
@@ -92,8 +93,8 @@ params:
     latex: n_s
 
 likelihood:
-  planck_2018_highl_plik.TTTEEE:
-    clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
+  planck_2018_highl_plik.TTTEEE: null
+    #clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
