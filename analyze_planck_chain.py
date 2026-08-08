@@ -125,6 +125,12 @@ def main():
     print(f"Total samples: {samples.numrows}")
     print(f"Total parameters: {len(param_names)}")
 
+    try:
+        r_minus_1_overall=samples.getGelmanRubin()
+        print(f"Overall Gelman-Rubin R-1 (worst parameter): {r_minus_1_overall:.4f}")
+    except Exception as e:
+        print(f"WARNING: R-1 value was not computed! {e}")
+
     cosmo_params_present, display_names = get_cosmo_params(param_names)
     extra_params = [p for p in param_names if p not in cosmo_params_present]
 

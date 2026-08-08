@@ -7,13 +7,21 @@ from getdist import plots, MCSamples
 # 1. Load the chain
 # ---------------------------------------------------------
 prefix = "chains/planck_tttee"
-chains = load_samples(prefix, combined=True, to_getdist=False)
+skip=0.3
+chains = load_samples(prefix, combined=True, to_getdist=False, skip=skip)
 
 param_names = list(chains.columns)
 
 print("\n=== Loaded Chain Information ===")
 print(f"Total samples: {chains.data.shape[0]}")
 print(f"Total parameters: {len(param_names)}")
+
+try:
+  getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=skip)
+  r_minus_1_overall=getdist_chains.getGelmanRubin()
+  print(f"Overall Gelman-Rubin R-1 (worst parameter): {r_minus_1_overall:.4f}")
+except Exception as e:
+  print(f"WARNING: R-1 value was not computed! {e}")
 
 # ---------------------------------------------------------
 # 2. Cosmological parameters (using ln_A_s_1e10 explicitly)
