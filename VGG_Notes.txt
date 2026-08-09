@@ -25,6 +25,12 @@ mpirun --oversubscribe -np 4 cobaya-run -r planck_tttee.yaml
 ## productioin run to reproduce planck 2018 studies
 mpirun -np 4 cobaya-run -r planck_tttee.yaml
 
+## restart using the past run folder 
+mpirun --oversubscribe -np 4 cobaya-run ./mpi_chains/planck_tttee
+
+#see https://cobaya-gui.streamlit.app/ for adding more experimental data
+# see also https://cobaya.readthedocs.io/en/latest/installation_cosmo.html
+
 # the workflow at the end in order to push and sync with the repo: 
 git add .
 git commit -m "Sync work before deleting Codespace"

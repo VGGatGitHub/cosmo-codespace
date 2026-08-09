@@ -150,7 +150,7 @@ params:
       max: 100
     ref:
       dist: norm
-      loc: 67.3
+      loc: 68.3
       scale: 2.0
     latex: H_0
   omega_b:
@@ -159,7 +159,7 @@ params:
       max: 0.03
     ref:
       dist: norm
-      loc: 0.022
+      loc: 0.0227
       scale: 0.0005
     latex: \omega_b
     renames:
@@ -181,7 +181,7 @@ params:
       max: 0.15
     ref:
       dist: norm
-      loc: 0.055
+      loc: 0.09
       scale: 0.01
     latex: \tau
     renames:
@@ -192,7 +192,7 @@ params:
       max: 4.0
     ref:
       dist: norm
-      loc: 3.05
+      loc: 3.11
       scale: 0.1
     latex: \ln(10^{10} A_s)
   n_s:
@@ -201,7 +201,7 @@ params:
       max: 1.1
     ref:
       dist: norm
-      loc: 0.965
+      loc: 0.9625
       scale: 0.02
     latex: n_s
     renames:
@@ -549,7 +549,7 @@ sampler:
     measure_speeds: true
     oversample_power: 0.4
     oversample_thin: true
-    drag: false
+    drag: true
     blocking:
     - - 1
       - - H0
@@ -558,9 +558,9 @@ sampler:
         - tau_reio
         - ln_A_s_1e10
         - n_s
-    - - 6
+    - - 8
       - - A_planck
-    - - 6
+    - - 8
       - - calib_100T
         - calib_217T
         - A_cib_217

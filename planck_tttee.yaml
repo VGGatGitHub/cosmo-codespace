@@ -3,9 +3,12 @@ output: mpi_chains/planck_tttee #see below how to do mpi run
 #"n_MPI_nodes": 4,   # Number of MPI processes
     #'no_mpi' : True,
 
-#if sucesfull you may need to change 20 to 20000 for below 'max_samples: 20000'
+## restart using the past run folder 
+#mpirun --oversubscribe -np 4 cobaya-run ./mpi_chains/planck_tttee
 
-## if problems theh in bash do:
+#if sucesfull you may need to change 20 to 20000 for 'max_samples: 20000' below
+
+## if problems then in bash do (check the cosmo-codespace location):
 # export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline
 # ./install_planck.sh
 # cobaya-install --test planck_2018_highl_plik.TTTEEE
@@ -16,8 +19,12 @@ output: mpi_chains/planck_tttee #see below how to do mpi run
 # cobaya-install planck_2018_highl_plik.TTTEEE -p $COBAYA_PACKAGES_PATH
 
 ## run with one of the follwing: 
-# python -m cobaya.run -r planck_tttee.yaml
+# python -m cobaya.run -f planck_tttee.yaml
+# mpirun --oversubscribe -np 4 cobaya-run -f planck_tttee.yaml
+
+## restart using 
 # mpirun --oversubscribe -np 4 cobaya-run -r planck_tttee.yaml
+# mpirun --oversubscribe -np 4 cobaya-run ./mpi_chains/planck_tttee
 
 sampler:
   mcmc:
@@ -26,6 +33,9 @@ sampler:
     Rminus1_cl_stop: 0.02
     learn_proposal: true
     learn_proposal_Rminus1_min: 0.2
+    drag: true
+    #oversample_power: 0.2
+    #proposal_scale: 1.9 #this is hard to change don't use it!
     covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     #covmat: auto
 
@@ -43,7 +53,7 @@ params:
       max: 100
     ref:
       dist: norm
-      loc: 67.3
+      loc: 68.3
       scale: 2.0
     latex: H_0
   omega_b:
@@ -52,7 +62,7 @@ params:
       max: 0.03
     ref:
       dist: norm
-      loc: 0.022
+      loc: 0.0227
       scale: 0.0005
     latex: \omega_b
   omega_cdm:
@@ -70,7 +80,7 @@ params:
       max: 0.15
     ref:
       dist: norm
-      loc: 0.055
+      loc: 0.09
       scale: 0.01
     latex: \tau
   ln_A_s_1e10:
@@ -79,7 +89,7 @@ params:
       max: 4.0
     ref:
       dist: norm
-      loc: 3.05
+      loc: 3.11
       scale: 0.1
     latex: \ln(10^{10} A_s)
   n_s:
@@ -88,13 +98,13 @@ params:
       max: 1.1
     ref:
       dist: norm
-      loc: 0.965
+      loc: 0.9625
       scale: 0.02
     latex: n_s
 
 likelihood:
-  planck_2018_highl_plik.TTTEEE: null
-    #clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
+  planck_2018_highl_plik.TTTEEE: #null
+    clik_file: baseline/plc_3.0/hi_l/plik/plik_rd12_HM_v22b_TTTEEE.clik
   planck_2018_lowl.TT: null
   planck_2018_lowl.EE: null
   planck_2018_lensing.clik: null
