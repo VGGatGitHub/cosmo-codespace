@@ -531,7 +531,7 @@ sampler:
     supports_periodic_params: true
     burn_in: 0
     max_tries: 40d
-    covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+    covmat: auto
     covmat_params: null
     proposal_scale: 2.4
     output_every: 60s
@@ -541,7 +541,7 @@ sampler:
     learn_proposal_Rminus1_max: 2.0
     learn_proposal_Rminus1_max_early: 30.0
     learn_proposal_Rminus1_min: 0.2
-    max_samples: 20
+    max_samples: 10000
     Rminus1_stop: 0.01
     Rminus1_cl_stop: 0.02
     Rminus1_cl_level: 0.95

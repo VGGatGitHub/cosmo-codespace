@@ -6,8 +6,22 @@ from getdist import plots, MCSamples
 # ---------------------------------------------------------
 # 1. Load the chain
 # ---------------------------------------------------------
-prefix = "chains/planck_tttee"
-skip=0.3
+prefix = "mpi_chains/planck_tttee"
+print("reading:",prefix)
+try:
+  getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=0)
+  r_minus_1_overall0=getdist_chains.getGelmanRubin()
+  print(f"skip=0, R-1={r_minus_1_overall0}")
+  for nskip in [.1,.2,.25,.3,.35,.4]:
+    getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=nskip)
+    r_minus_1_overall=getdist_chains.getGelmanRubin()
+    print(f"skip={nskip}, R-1={r_minus_1_overall}")
+    if r_minus_1_overall0 > r_minus_1_overall: skip=nskip; r_minus_1_overall0=r_minus_1_overall;
+  print(f"Overall Gelman-Rubin R-1 (worst parameter): {r_minus_1_overall0:.4f}, skip={skip}")
+except Exception as e:
+  print(f"WARNING: R-1 value was not computed! {e}")
+  skip=0
+
 chains = load_samples(prefix, combined=True, to_getdist=False, skip=skip)
 
 param_names = list(chains.columns)
@@ -16,12 +30,6 @@ print("\n=== Loaded Chain Information ===")
 print(f"Total samples: {chains.data.shape[0]}")
 print(f"Total parameters: {len(param_names)}")
 
-try:
-  getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=skip)
-  r_minus_1_overall=getdist_chains.getGelmanRubin()
-  print(f"Overall Gelman-Rubin R-1 (worst parameter): {r_minus_1_overall:.4f}")
-except Exception as e:
-  print(f"WARNING: R-1 value was not computed! {e}")
 
 # ---------------------------------------------------------
 # 2. Cosmological parameters (using ln_A_s_1e10 explicitly)

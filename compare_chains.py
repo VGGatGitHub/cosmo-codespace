@@ -1,3 +1,5 @@
+
+
 # Install trianglechain package for plotting contours if you do not already have it
 # Note: shell-style pip install commands are not valid in regular Python scripts.
 import subprocess
@@ -16,6 +18,16 @@ from trianglechain import TriangleChain
 import matplotlib.pyplot as plt
 import matplotlib
 import os
+
+# R-1 and skip  
+
+from getdist import MCSamples
+from cobaya.output import load_samples
+
+skip = 0.1
+prefix = "mpi_chains/planck_tttee"
+gd_chain = load_samples(prefix, combined=True, to_getdist=True,skip=skip)
+
 
 # Helper function to transform raw Planck data into a structured numpy array
 # Assumes the first two columns are weights and minuslogpost in raw .txt files
@@ -140,14 +152,48 @@ params = general_names # These are the parameter names for plotting
 ranges = {
     'omega_b': [0.022, 0.023],
     'omega_cdm': [0.11, 0.125],
-    'h': [0.6, 0.8],
+    'h': [0.65, 0.75],
     'tau_reio': [0.01, 0.13],
     'ln_A_s_1e10': [2.9, 3.2],
     'n_s': [0.95, 0.99],
 }
 
+def apply_skip_burnin(chain_array, skip):
+    """
+    Replicates GetDist's 'skip'/'ignore_rows' behavior for a single raw chain file.
+
+    Parameters
+    ----------
+    chain_array : np.ndarray
+        Raw 2D array loaded from a single chain file (rows = samples).
+    skip : float
+        If 0 <= skip < 1: treated as a FRACTION of rows to discard from the
+        start of this file (GetDist's default 'ignore_rows' behavior).
+        If skip >= 1: treated as an absolute NUMBER of rows to discard from
+        the start of this file.
+
+    Returns
+    -------
+    np.ndarray
+        The chain array with burn-in rows removed.
+    """
+    if chain_array is None or chain_array.size == 0 or skip <= 0:
+        return chain_array
+
+    n_rows = chain_array.shape[0]
+
+    if skip < 1:
+        n_skip = int(np.floor(n_rows * skip))
+    else:
+        n_skip = int(skip)
+
+    n_skip = min(n_skip, n_rows)  # safety: never skip more rows than exist
+
+    return chain_array[n_skip:]
+
 # Function to load and transform chains, now flexible for multi-file or single-file inputs
-def load_and_transform_chain_flexible(file_path_or_prefix, is_multi_file, dot_or_dash, chain_label, current_names, current_indices):
+def load_and_transform_chain_flexible(file_path_or_prefix, is_multi_file, dot_or_dash, 
+                                      chain_label, current_names, current_indices,skip=0.3):
     planck_chain_tot = None
     if is_multi_file:
         # Load multiple files (e.g., _1.txt, _2.txt, etc.)
@@ -155,6 +201,7 @@ def load_and_transform_chain_flexible(file_path_or_prefix, is_multi_file, dot_or
             chain_path = f'{file_path_or_prefix}{dot_or_dash}{i}.txt'
             try:
                 planck_chain_raw = np.loadtxt(chain_path)
+                planck_chain_raw = apply_skip_burnin(planck_chain_raw, skip)
                 if planck_chain_tot is None:
                     planck_chain_tot = planck_chain_raw
                 else:
@@ -184,7 +231,7 @@ print(f"Loading Planck + BAO chain from \n{bao_chain_path}...")
 planck_chain_2 = load_and_transform_chain_flexible(bao_chain_path, True, "_", "Planck + BAO", general_names, general_indices)
 
 print(f"Loading My Chains Planck chain from \n{my_chain_path}...")
-planck_chain_3 = load_and_transform_chain_flexible(my_chain_path, True, ".", "My Chains", general_names, my_chain_indices)
+planck_chain_3 = load_and_transform_chain_flexible(my_chain_path, True, ".", "My Chains", general_names, my_chain_indices,skip=skip)
 
 
 # Prepare and plot the distributions
@@ -212,3 +259,9 @@ plot_path = os.path.join("./", plot_filename)
 
 plt.savefig(plot_path, bbox_inches='tight', dpi=300)
 print(f"\nTriangle plot generated and saved to: {plot_path}")
+
+# 
+
+r1 = gd_chain.getGelmanRubin()
+print("R-1 =", r1)
+print(f"skip = {skip}")
