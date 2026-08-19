@@ -170,7 +170,7 @@ samples = MCSamples(
 g = plots.get_subplot_plotter()
 g.triangle_plot(samples, filled=True)
 
-plot_path = "chains/planck_tttee_triangle.png"
+plot_path = prefix+"_triangle.png"
 plt.tight_layout()
 plt.savefig(plot_path, dpi=200)
 print(f"\nTriangle plot generated and saved to: {plot_path}")

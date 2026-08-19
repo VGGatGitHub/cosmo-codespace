@@ -251,7 +251,7 @@ if planck_chain_3 is not None:
     tri.contour_cl(planck_chain_3, color='blue', label="My Chains")
 
 plt.suptitle('Triangle Plots for Chain Comparison', y=1.02)
-plt.show()
+#plt.show()
 
 # Create a unique filename for the plot
 plot_filename = f"triangle_plot_comparison.png"
