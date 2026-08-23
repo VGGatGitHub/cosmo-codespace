@@ -167,7 +167,7 @@ my_chain_indices = [2,3,4,5,6,7]
 
 
 if new_model: 
-    new_chain_indices=[3,4,5,6,7,8]
+    new_chain_indices=[2,4,5,6,7,8]
     if new_prefix == prefix:  
         new_chain_indices = my_chain_indices
 
