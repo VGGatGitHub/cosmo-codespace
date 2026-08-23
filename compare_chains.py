@@ -24,9 +24,35 @@ import os
 from getdist import MCSamples
 from cobaya.output import load_samples
 
+###
+new_model = False
+
+if new_model:
+    new_skip = 0.1
+    new_prefix= "new_model/h_omega_l"
+    new_chain_path ="./new_model/h_omega_l"
+    new_gd_chain = load_samples(new_prefix, combined=True, to_getdist=True,skip=new_skip)
+
+    new_r1 = new_gd_chain.getGelmanRubin()
+    print(f"\n{new_prefix}")
+    print("R-1 =", new_r1)
+    print(f"skip = {new_skip}")
+
+####
 skip = 0.1
 prefix = "mpi_chains/planck_tttee"
+my_chain_path = "./mpi_chains/planck_tttee"
 gd_chain = load_samples(prefix, combined=True, to_getdist=True,skip=skip)
+
+r1 = gd_chain.getGelmanRubin()
+print(f"\n{prefix}")
+print("R-1 =", r1)
+print(f"skip = {skip}")
+
+# Define the paths for the old planck chains
+base_planck_chain_dir = "./planck2018_chains/base/plikHM_TTTEEE_lowl_lowE_lensing/" 
+base_planck_file_prefix = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing")  # Assuming the first file is _1.txt
+bao_chain_path = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing_post_BAO")
 
 
 # Helper function to transform raw Planck data into a structured numpy array
@@ -71,13 +97,6 @@ def transform_planck_raw_to_paramchain(data_array, names_list, indices_list):
     return rec
 
 
-# Define new paths for the chains
-base_planck_chain_dir = "./planck2018_chains/base/plikHM_TTTEEE_lowl_lowE_lensing/" 
-base_planck_file_prefix = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing")  # Assuming the first file is _1.txt
-
-bao_chain_path = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing_post_BAO")
-my_chain_path = "./mpi_chains/planck_tttee"
-
 
 # Desired cosmological parameters for plotting in a specific order
 plotting_cosmo_params = ['h','omega_b','omega_cdm', 'tau_reio', 'ln_A_s_1e10','n_s']
@@ -87,7 +106,7 @@ paramnames_file_path = base_planck_file_prefix + '.paramnames'
 # Temporarily store (processed_param_name, original_index) tuples
 found_params_temp = []
 
-print(f"Attempting to dynamically load parameter names and indices from: {paramnames_file_path}")
+print(f"\nAttempting to dynamically load parameter names and indices from: {paramnames_file_path}")
 if os.path.exists(paramnames_file_path):
     with open(paramnames_file_path, 'r') as f:
         for i, line in enumerate(f):
@@ -145,6 +164,13 @@ else:
 # For 'My Chains', use my_chain_indices as previously corrected.
 # This assumes it also has weight/minuslogpost, then parameters in the same order as general. The H0 to h conversion is handled in transform_planck_raw_to_paramchain.
 my_chain_indices = [2,3,4,5,6,7]
+
+
+if new_model: 
+    new_chain_indices=[3,4,5,6,7,8]
+    if new_prefix == prefix:  
+        new_chain_indices = my_chain_indices
+
 
 params = general_names # These are the parameter names for plotting
 
@@ -227,12 +253,15 @@ def load_and_transform_chain_flexible(file_path_or_prefix, is_multi_file, dot_or
 print(f"Loading Planck Base chains from \n{base_planck_file_prefix}...")
 planck_chain_1 = load_and_transform_chain_flexible(base_planck_file_prefix, True, "_", "Planck Base", general_names, general_indices)
 
-print(f"Loading Planck + BAO chain from \n{bao_chain_path}...")
-planck_chain_2 = load_and_transform_chain_flexible(bao_chain_path, True, "_", "Planck + BAO", general_names, general_indices)
+if new_model:
+    print(f"Loading New chain from \n{new_chain_path}...")
+    planck_chain_2 = load_and_transform_chain_flexible(new_chain_path, True, ".", "New Model", general_names, new_chain_indices,skip=new_skip)
+else:
+    print(f"Loading Planck + BAO chain from \n{bao_chain_path}...")
+    planck_chain_2 = load_and_transform_chain_flexible(bao_chain_path, True, "_", "Planck + BAO", general_names, general_indices)
 
-print(f"Loading My Chains Planck chain from \n{my_chain_path}...")
+print(f"Loading chains from \n{my_chain_path}...")
 planck_chain_3 = load_and_transform_chain_flexible(my_chain_path, True, ".", "My Chains", general_names, my_chain_indices,skip=skip)
-
 
 # Prepare and plot the distributions
 matplotlib.rcParams['font.family'] = 'serif'
@@ -246,9 +275,12 @@ tri = TriangleChain(density_estimation_method='smoothing', params=params, ranges
 if planck_chain_1 is not None:
     tri.contour_cl(planck_chain_1, color='red', label="Planck Base")
 if planck_chain_2 is not None:
-    tri.contour_cl(planck_chain_2, color='green', label="Planck + BAO")
+    if new_model:
+        tri.contour_cl(planck_chain_2, color='blue', label="New Chains")
+    else:
+        tri.contour_cl(planck_chain_2, color='blue', label="Planck + BAO")
 if planck_chain_3 is not None:
-    tri.contour_cl(planck_chain_3, color='blue', label="My Chains")
+    tri.contour_cl(planck_chain_3, color='green', label="My Planck Chains")
 
 plt.suptitle('Triangle Plots for Chain Comparison', y=1.02)
 #plt.show()
@@ -259,9 +291,3 @@ plot_path = os.path.join("./", plot_filename)
 
 plt.savefig(plot_path, bbox_inches='tight', dpi=300)
 print(f"\nTriangle plot generated and saved to: {plot_path}")
-
-# 
-
-r1 = gd_chain.getGelmanRubin()
-print("R-1 =", r1)
-print(f"skip = {skip}")
