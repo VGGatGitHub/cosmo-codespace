@@ -30,7 +30,7 @@ new_model = False
 if new_model:
     new_skip = 0.1
     new_prefix= "new_model/h_omega_l"
-    new_chain_path ="./new_model/h_omega_l"
+    new_chain_path = "./"+new_prefix
     new_gd_chain = load_samples(new_prefix, combined=True, to_getdist=True,skip=new_skip)
 
     new_r1 = new_gd_chain.getGelmanRubin()
@@ -41,7 +41,7 @@ if new_model:
 ####
 skip = 0.1
 prefix = "mpi_chains/planck_tttee"
-my_chain_path = "./mpi_chains/planck_tttee"
+my_chain_path = "./"+ prefix
 gd_chain = load_samples(prefix, combined=True, to_getdist=True,skip=skip)
 
 r1 = gd_chain.getGelmanRubin()
@@ -81,11 +81,12 @@ def transform_planck_raw_to_paramchain(data_array, names_list, indices_list):
         param_data = data_array[:, col_index]
 
         if param_name == 'h':
-            # Convert H0 to h if values are in H0 scale (e.g., > 10, typically ~60-80)
-            if np.mean(param_data) > 10: # Check if mean is in H0 range
-                rec[param_name] = param_data / 100.0
+            # Convert h to H0 if values are in h scale (e.g., < 1., typically ~0.60-0.80)
+            if np.mean(param_data) < 1.: # Check if mean is in h range
+                rec[param_name] = param_data * 100.0
             else:
                 rec[param_name] = param_data
+            param_name='H0'
         else:
             rec[param_name] = param_data
 
@@ -99,7 +100,7 @@ def transform_planck_raw_to_paramchain(data_array, names_list, indices_list):
 
 
 # Desired cosmological parameters for plotting in a specific order
-plotting_cosmo_params = ['h','omega_b','omega_cdm', 'tau_reio', 'ln_A_s_1e10','n_s']
+plotting_cosmo_params = ['H0','omega_b','omega_cdm', 'tau_reio', 'ln_A_s_1e10','n_s']
 
 # --- Dynamic determination of general_names and general_indices for Planck Base and Planck+BAO chains ---
 paramnames_file_path = base_planck_file_prefix + '.paramnames'
@@ -120,7 +121,7 @@ if os.path.exists(paramnames_file_path):
 
             # Mapping common aliases to the desired plotting names
             if param_name_raw == 'H0*':
-                processed_param_name = 'h'
+                processed_param_name = 'H0'
             elif param_name_raw == 'omegabh2':
                 processed_param_name = 'omega_b'
             elif param_name_raw == 'omegach2':
@@ -162,7 +163,8 @@ else:
     general_indices = [2,3,4,5,6,7] # Assuming weight, minuslogpost then parameters
 
 # For 'My Chains', use my_chain_indices as previously corrected.
-# This assumes it also has weight/minuslogpost, then parameters in the same order as general. The H0 to h conversion is handled in transform_planck_raw_to_paramchain.
+# This assumes it also has weight/minuslogpost, then parameters in the same order as general. 
+# The h to H0 conversion is handled in transform_planck_raw_to_paramchain.
 my_chain_indices = [2,3,4,5,6,7]
 
 
@@ -176,12 +178,12 @@ params = general_names # These are the parameter names for plotting
 
 # Parameter ranges for the plotting (kept as hardcoded from original cell for now)
 ranges = {
-    'omega_b': [0.022, 0.023],
-    'omega_cdm': [0.11, 0.125],
-    'h': [0.65, 0.75],
-    'tau_reio': [0.01, 0.13],
-    'ln_A_s_1e10': [2.9, 3.2],
-    'n_s': [0.95, 0.99],
+    'H0': [65, 75],
+    'omega_b': [0.0218, 0.023],
+    'omega_cdm': [0.115, 0.125],
+    'tau_reio': [0.01, 0.12],
+    'ln_A_s_1e10': [2.98, 3.12],
+    'n_s': [0.95, 0.98],
 }
 
 def apply_skip_burnin(chain_array, skip):
@@ -270,7 +272,7 @@ matplotlib.rcParams['legend.frameon'] = False
 plt.rcParams.update({"text.usetex": False}) # Set to False to avoid LaTeX errors
 
 tri = TriangleChain(density_estimation_method='smoothing', params=params, ranges=ranges,
-                    labels=[r"h", r"$\omega_b$", r"$\omega_{cdm}$", r"$\tau_{\rm reio}$", r"$\ln(10^{10}A_s)$", r"$n_s$" ])
+                    labels=[r"$H_0$", r"$\omega_b$", r"$\omega_{cdm}$", r"$\tau_{\rm reio}$", r"$\ln(10^{10}A_s)$", r"$n_s$" ])
 
 if planck_chain_1 is not None:
     tri.contour_cl(planck_chain_1, color='red', label="Planck Base")
