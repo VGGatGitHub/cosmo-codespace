@@ -12,7 +12,7 @@ mpirun -np 2 python test.py
 mpirun --oversubscribe -np 4 python test.py
 
 #to test external package planck_2018_highl_plik.TTTEEE run
-cobaya-install --test planck_2018_highl_plik.TTTEEE
+cobaya-install --test planck_2018_highl_plik.TTTEEE #planck_2018_highl_CamSpec2021.TTTEEE
 
 ## if you get error do this in bash:
 export CLIK_PATH=/workspaces/cosmo-codespace/cobaya_packages/data/planck_2018/baseline

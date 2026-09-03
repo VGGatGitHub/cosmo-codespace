@@ -16,7 +16,7 @@ sampler:
     learn_proposal_Rminus1_min: 0.2
     drag: true
     #oversample_power: 0.2
-    covmat: baseline/plc_3.0/covmat/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
+    covmat: ./cobaya_packages/data/planck_supp_data_and_covmats/covmats/base_plikHM_TTTEEE_lowl_lowE_lensing.covmat
     #covmat: auto
 
 likelihood:
