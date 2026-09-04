@@ -1,5 +1,5 @@
 output: my_mpi_chains/planck_tttee
-# "n_MPI_nodes": 4,   # Number of MPI processes
+"n_MPI_nodes": 4,   # Number of MPI processes
 # 'no_mpi' : True,
     
 # in bash do:
