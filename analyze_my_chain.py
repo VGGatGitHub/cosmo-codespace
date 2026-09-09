@@ -7,9 +7,11 @@ from getdist import plots, MCSamples
 # 1. Load the chain
 # ---------------------------------------------------------
 prefix = "mpi_chains/planck_tttee"
+
 print("reading:",prefix)
+skip=0
 try:
-  getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=0)
+  getdist_chains = load_samples(prefix, combined=True, to_getdist=True, skip=skip)
   r_minus_1_overall0=getdist_chains.getGelmanRubin()
   print(f"skip=0, R-1={r_minus_1_overall0}")
   for nskip in [.1,.2,.25,.3,.35,.4]:
@@ -20,7 +22,6 @@ try:
   print(f"Overall Gelman-Rubin R-1 (worst parameter): {r_minus_1_overall0:.4f}, skip={skip}")
 except Exception as e:
   print(f"WARNING: R-1 value was not computed! {e}")
-  skip=0
 
 chains = load_samples(prefix, combined=True, to_getdist=False, skip=skip)
 
