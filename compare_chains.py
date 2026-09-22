@@ -54,6 +54,9 @@ base_planck_chain_dir = "./planck2018_chains/base/plikHM_TTTEEE_lowl_lowE_lensin
 base_planck_file_prefix = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing")  # Assuming the first file is _1.txt
 bao_chain_path = os.path.join(base_planck_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_lensing_post_BAO")
 
+base_planck_DES_chain_dir="./planck2018_chains/base/plikHM_TTTEEE_lowl_lowE_DES/"
+bao_chain_path = os.path.join(base_planck_DES_chain_dir, "base_plikHM_TTTEEE_lowl_lowE_DES_post_lensing")
+
 
 # Helper function to transform raw Planck data into a structured numpy array
 # Assumes the first two columns are weights and minuslogpost in raw .txt files
