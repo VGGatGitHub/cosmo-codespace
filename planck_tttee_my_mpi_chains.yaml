@@ -46,7 +46,7 @@ params:
  # --- Neutrino Parameters (Sampled Mass) ---
   m_ncdm:
     prior:
-      min: 0.06
+      min: 0.0
       max: 1.0
     ref:
       dist: norm
